@@ -3,9 +3,11 @@
 ginをdocker上で動かす雛形
 
 ## ディレクトリ構成
+```
 root/
 ├ docker/
 └ src/
+```
 
 
 ## 利用モジュール
@@ -18,8 +20,9 @@ root/
     - https://github.com/cosmtrek/air
 
 ## 使い方
-- `git clone https://github.com/ur0o/gin_docker && cd gin_docker`
-- `docker-compose up`
+- `git clone https://github.com/ur0o/gin_docker`
+- `cd gin_docker/src && go mod init gin_docker && go mod tidy`
+- `cd .. && docker-compose up`
 - `localhost:8000`にアクセス。`{message: hello world}`してくれれば成功。
 - main.goの13行目をいじってレスポンスを変えてみる。docker-composeのlogで`main.go has changed.`の後に`building...`とか出てきたらairがホットリロードしてくれてる。
 
