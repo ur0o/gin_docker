@@ -6,6 +6,7 @@ services:
             dockerfile: docker/api/Dockerfile
         volumes:
             - "./src/:/go/src/"
+        entrypoint: "air -c .air.toml"
     nginx:
         image: nginx
         ports:

@@ -1,12 +1,12 @@
-FROM golang:1.19-alpine
+FROM golang:1.20
 
 ENV WORKDIR /go/src
 
 WORKDIR $WORKDIR
 
 
-COPY ./src .
+COPY ./src/go.mod .
+COPY ./src/go.sum .
 
 RUN go get -u github.com/cosmtrek/air
 RUN go build -o /go/bin/air github.com/cosmtrek/air
-CMD ["air", "-c", ".air.toml"]
