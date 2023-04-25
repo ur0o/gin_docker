@@ -4,9 +4,15 @@ services:
         build:
             context: .
             dockerfile: docker/api/Dockerfile
+        environment:
+            - TZ=Asia/Tokyo
         volumes:
             - "./src/:/go/src/"
         entrypoint: "air -c .air.toml"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        depends_on:
+            - mysql
     nginx:
         image: nginx
         ports:
@@ -14,3 +20,16 @@ services:
         volumes:
             - "./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
             - ".:/workspace"
+        depends_on:
+            - api
+    mysql:
+        image: mariadb:10.6
+        restart: always
+        ports:
+            - "13306:3306"
+        volumes:
+            - "./mysql:/var/lib/mysql"
+        environment:
+            - TZ=Asia/Tokyo
+            - MYSQL_ROOT_PASSWORD=pass
+        user: "1000:1000"

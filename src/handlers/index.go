@@ -1,4 +1,4 @@
-package handler
+package handlers
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,7 +6,7 @@ import (
 )
 
 func Index(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Hello, world",
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"text": "Hello, world",
 	})
 }

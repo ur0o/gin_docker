@@ -3,9 +3,13 @@ package config
 import (
 	"github.com/gin-gonic/gin"
 
-	"gin_docker/handler"
+	"gin_docker/handlers"
 )
 
-func Routing(e *gin.Engine) {
-	e.GET("/", handler.Index)
+func Init(e *gin.Engine) {
+	initRouting(e)
+}
+
+func initRouting(e * gin.Engine) {
+	e.GET("/", handlers.Index)
 }

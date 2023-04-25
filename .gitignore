@@ -1,1 +1,8 @@
 src/tmp
+
+mysql/
+
+src/go.mod
+src/go.sum
+
+!.keep
